@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
 
@@ -12,7 +13,8 @@ export class CategoryComponent implements OnInit {
   categories:Category[] = [];
   currentCategory:Category;
   dataLoaded=false;
-  constructor(private categoryService:CategoryService) { }
+  constructor(private categoryService:CategoryService
+    ,private activatedRoute:ActivatedRoute) { }
   ngOnInit(): void {
     this.getCategories();
   }
@@ -33,6 +35,13 @@ export class CategoryComponent implements OnInit {
     }else{
       return "list-group-item"
     }
-   
   }
+  getAllByCategoryClass()  {
+    if(!this.currentCategory)
+    {
+      return "list-group-item active"
+    }else{
+      return "list-group-item"
+    }
+  }                       
 }
